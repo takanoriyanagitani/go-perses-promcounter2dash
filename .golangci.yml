@@ -1,0 +1,70 @@
+version: "2"
+
+linters:
+
+  default: all
+
+  disable:
+    - wsl
+    - wsl_v5
+    - nlreturn
+    - nonamedreturns
+    - exhaustruct
+    - varnamelen
+    - wrapcheck
+    - forbidigo
+
+    - mnd
+    - gosec
+    - revive
+    - gochecknoglobals
+    - errcheck
+    - tagliatelle
+    #- tagliatelle
+
+  settings:
+
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          allow:
+            - $gostd
+            - github.com/prometheus/common/expfmt
+            - github.com/prometheus/common/model
+            - github.com/prometheus/client_model/go
+            - github.com/perses/perses/go-sdk/dashboard
+            - github.com/perses/perses/go-sdk/query
+            - github.com/perses/perses/go-sdk/panel-group
+            - github.com/perses/perses/go-sdk/panel
+            - github.com/perses/perses/pkg/model/api/v1
+            - github.com/perses/plugins/prometheus/sdk/go/query
+            - github.com/perses/plugins/timeserieschart/sdk/go
+            - github.com/takanoriyanagitani/go-perses-promcounter2dash
+          deny:
+            - pkg: unsafe
+
+    nolintlint:
+      require-specific: true
+      require-explanation: true
+      allow-unused: false
+      allow-no-explanation:
+        - gochecknoglobals
+        - funlen
+        - ireturn
+
+    govet:
+      enable-all: true
+      disable:
+      - fieldalignment
+
+    staticcheck:
+      checks:
+      - all
+      - -ST1017
+      - -ST1023
+      - -QF1011
+      - -QF1008
+      - -ST1001
+      - -ST1000
